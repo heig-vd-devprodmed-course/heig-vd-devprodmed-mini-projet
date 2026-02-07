@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\Reaction;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
@@ -47,4 +48,13 @@ Route::get('/test-post-2', function () {
     $post->save();
 
     return $post;
+});
+
+Route::get('/test-like', function () {
+    $user = User::find(1);
+    $post = Post::find(2);
+
+    $user->likes()->attach($post->id, ['reaction' => 'love']);
+
+    return $post->likes;
 });
