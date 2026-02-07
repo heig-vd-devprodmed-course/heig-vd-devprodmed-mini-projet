@@ -17,7 +17,6 @@ return new class extends Migration
             $table->foreignId('post_id')->constrained('posts')->onDelete('cascade');
             $table->enum('reaction', ['like', 'love', 'haha', 'wow', 'sad', 'angry'])->default('like');
 
-            $table->index(['user_id', 'post_id']);
             $table->unique(['user_id', 'post_id']);
         });
     }
