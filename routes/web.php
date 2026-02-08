@@ -16,7 +16,6 @@ Route::get('/test-user', function () {
     $user->last_name = 'Doe';
     $user->username = 'johndoe';
     $user->email = 'johndoe@example.com';
-    $user->password = 'password';
 
     $user->save();
 
