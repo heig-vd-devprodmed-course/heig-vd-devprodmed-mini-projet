@@ -21,6 +21,6 @@ class Post extends Model
      */
     public function likes(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'likes')->using(Like::class)->withPivot('reaction');
+        return $this->belongsToMany(User::class, 'likes')->using(Like::class)->withTimestamps()->withPivot('reaction');
     }
 }
