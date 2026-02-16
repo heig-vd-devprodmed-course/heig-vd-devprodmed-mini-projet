@@ -17,7 +17,7 @@
 
     <div class="mt-8 space-y-6">
         @foreach ($posts as $post)
-            <x-post :post="$post" />
+            <x-post-card :post="$post" />
         @endforeach
     </div>
 </x-default-layout>
