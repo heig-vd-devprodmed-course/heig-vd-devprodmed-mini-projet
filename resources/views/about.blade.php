@@ -7,10 +7,14 @@
         {{ __('ui.about.description') }}
     </x-slot>
 
-    <h1 class="text-2xl font-bold">{{ __('ui.about.title') }}</h1>
+    <h1 class="text-2xl font-bold">
+        {{ __('ui.about.title') }}
+    </h1>
+
     <p class="mt-4">
         {{ __('ui.about.introduction') }}
     </p>
+
     <p class="mt-4">
         {{ __('ui.about.disclaimer') }}
     </p>
