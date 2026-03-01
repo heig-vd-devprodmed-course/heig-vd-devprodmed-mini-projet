@@ -23,5 +23,14 @@ return [
     'posts' => [
         'no_posts' => 'Aucun post à afficher.',
         'likes_count' => '{0} Aucun like|{1} :count like|[2,*] :count likes',
+        'index' => [
+            'title' => 'Tous les posts',
+            'description' => 'Tous les posts de :app_name.',
+        ],
+        'show' => [
+            'title' => ':post_title par :first_name :last_name',
+            'description' => ':post_title par :first_name :last_name.',
+            'author' => 'Publié par :first_name :last_name',
+        ],
     ],
 ];
