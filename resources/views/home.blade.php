@@ -15,9 +15,18 @@
         {{ __('ui.home.introduction', ['app_name' => config('app.name')]) }}
     </p>
 
+    <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-8">
+        {{ __('ui.home.recent_posts') }}
+    </h2>
+
     <div class="mt-8 space-y-6">
         @foreach ($posts as $post)
             <x-post-card :post="$post" />
         @endforeach
     </div>
+
+    <a href="{{ url('/posts') }}"
+        class="mt-6 block w-full px-4 py-2 bg-teal-600 dark:bg-purple-900 text-white rounded-md hover:bg-teal-700 dark:hover:bg-purple-800 text-center">
+        {{ __('ui.home.see_all_posts') }}
+    </a>
 </x-default-layout>

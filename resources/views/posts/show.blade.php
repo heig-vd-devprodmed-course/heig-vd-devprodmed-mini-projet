@@ -1,37 +1,57 @@
 <x-default-layout>
     <x-slot:title>
-        {{ __('ui.posts.show.title', [
-            'post_title' => $post->title,
-            'first_name' => $post->user->first_name,
-            'last_name' => $post->user->last_name,
-        ]) }}
+        @if ($post->title)
+            {{ __('ui.posts.show.title', [
+                'post_title' => $post->title,
+                'first_name' => $post->user->first_name,
+                'last_name' => $post->user->last_name,
+            ]) }}
+        @else
+            {{ __('ui.posts.show.title_without_post_title', [
+                'first_name' => $post->user->first_name,
+                'last_name' => $post->user->last_name,
+            ]) }}
+        @endif
     </x-slot>
 
     <x-slot:description>
-        {{ __('ui.posts.show.description', [
-            'post_title' => $post->title,
-            'first_name' => $post->user->first_name,
-            'last_name' => $post->user->last_name,
-        ]) }}
+        @if ($post->title)
+            {{ __('ui.posts.show.description', [
+                'post_title' => $post->title,
+                'first_name' => $post->user->first_name,
+                'last_name' => $post->user->last_name,
+            ]) }}
+        @else
+            {{ __('ui.posts.show.description_without_post_title', [
+                'first_name' => $post->user->first_name,
+                'last_name' => $post->user->last_name,
+            ]) }}
+        @endif
     </x-slot>
 
     <article class="bg-white dark:bg-slate-800 rounded-lg shadow-md p-6">
         <header class="mb-6">
-            <h1 class="text-3xl font-bold dark:text-white mb-2">
-                {{ $post->title }}
-            </h1>
+            @if ($post->title)
+                <h1 class="text-3xl font-bold dark:text-white mb-2">
+                    {{ $post->title }}
+                </h1>
+            @endif
 
             <p class="text-sm text-gray-600 dark:text-gray-400">
-                <span>
+                <a href="{{ url('@' . $post->user->username) }}">
                     {{ __('ui.posts.show.author', [
                         'first_name' => $post->user->first_name,
                         'last_name' => $post->user->last_name,
                     ]) }}
-                </span>
+                </a>
                 ·
                 <span title="{{ $post->created_at->isoFormat('LLLL') }}">
                     {{ $post->created_at->diffForHumans() }}
                 </span>
+                ·
+                <a href="{{ url('/posts/' . $post->id . '/edit') }}">
+                    {{ __('ui.posts.edit.title_without_post_title') }}
+                </a>
                 ·
                 <span class="font-semibold">
                     {{ trans_choice('ui.posts.likes_count', count($post->likes)) }}
@@ -49,7 +69,9 @@
             <ul class="flex flex-wrap gap-2">
                 @forelse ($post->likes as $user)
                     <li class="flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400">
-                        <span class="font-semibold">{{ '@' . $user->username }}</span>
+                        <a href="{{ url('@' . $user->username) }}" class="font-semibold hover:underline">
+                            {{ '@' . $user->username }}
+                        </a>
                         <span>
                             @if ($user->pivot->reaction === 'like')
                                 👍
