@@ -30,22 +30,6 @@ return [
             'title' => 'Créer un nouveau post',
             'description' => 'Créez un nouveau post pour partager vos pensées avec le monde sur :app_name.',
         ],
-        'form' => [
-            'fields' => [
-                'title' => [
-                    'label' => 'Titre (optionnel)',
-                    'placeholder' => 'Entrez un titre pour votre post (optionnel)',
-                ],
-                'content' => [
-                    'label' => 'Contenu',
-                    'placeholder' => 'Exprimez-vous librement dans votre post...',
-                ],
-            ],
-            'actions' => [
-                'submit' => 'Sauvegarder',
-                'cancel' => 'Annuler',
-            ],
-        ],
         'index' => [
             'title' => 'Tous les posts',
             'description' => 'Tous les posts de :app_name.',
