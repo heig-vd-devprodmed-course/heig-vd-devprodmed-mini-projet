@@ -14,6 +14,15 @@ return [
     'any_of'                 => 'Le champ :attribute est invalide.',
     'array'                  => 'Le champ :attribute doit être un tableau.',
     'ascii'                  => 'Le champ :attribute ne doit contenir que des caractères alphanumériques et des symboles codés sur un octet.',
+    'attributes' => [
+        'content'         => 'contenu',
+        'email'           => 'adresse e-mail',
+        'first_name'      => 'prénom',
+        'last_name'       => 'nom',
+        'profile_picture' => 'photo de profil',
+        'title'           => 'titre',
+        'username'        => "nom d'utilisateur",
+    ],
     'before'                 => 'Le champ :attribute doit être une date antérieure au :date.',
     'before_or_equal'        => 'Le champ :attribute doit être une date antérieure ou égale au :date.',
     'between'                => [

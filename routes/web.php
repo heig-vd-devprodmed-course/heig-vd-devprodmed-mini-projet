@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\LikeController;
+use App\Http\Controllers\MyProfileController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Post;
@@ -18,3 +20,7 @@ Route::get('/about', function () {
 Route::get('/@{username}', [ProfileController::class, 'show'])->where('username', '[A-Za-z0-9-_]+');
 
 Route::resource('posts', PostController::class);
+
+Route::singleton('my-profile', MyProfileController::class)->destroyable();
+
+Route::match(['put', 'patch'], '/likes/{post}', [LikeController::class, 'update']);

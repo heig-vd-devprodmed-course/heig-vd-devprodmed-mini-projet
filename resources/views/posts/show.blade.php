@@ -66,6 +66,36 @@
         </div>
 
         <footer class="pt-4 border-t border-gray-200 dark:border-gray-700">
+            <form method="POST" action="{{ url('/likes/' . $post->id) }}" class="mb-4">
+                @csrf
+                @method('PUT')
+                <div class="flex flex-wrap justify-between gap-2">
+                    <button type="submit" name="reaction" value="like"
+                        class="w-12 h-12 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 cursor-pointer {{ $reaction === 'like' ? 'ring-2 ring-teal-600 dark:ring-purple-900' : '' }}">
+                        👍
+                    </button>
+                    <button type="submit" name="reaction" value="love"
+                        class="w-12 h-12 rounded-full cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 {{ $reaction === 'love' ? 'ring-2 ring-teal-600 dark:ring-purple-900' : '' }}">
+                        ❤️
+                    </button>
+                    <button type="submit" name="reaction" value="haha"
+                        class="w-12 h-12 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 cursor-pointer {{ $reaction === 'haha' ? 'ring-2 ring-teal-600 dark:ring-purple-900' : '' }}">
+                        😂
+                    </button>
+                    <button type="submit" name="reaction" value="wow"
+                        class="w-12 h-12 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 cursor-pointer {{ $reaction === 'wow' ? 'ring-2 ring-teal-600 dark:ring-purple-900' : '' }}">
+                        😮
+                    </button>
+                    <button type="submit" name="reaction" value="sad"
+                        class="w-12 h-12 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 cursor-pointer {{ $reaction === 'sad' ? 'ring-2 ring-teal-600 dark:ring-purple-900' : '' }}">
+                        😢
+                    </button>
+                    <button type="submit" name="reaction" value="angry"
+                        class="w-12 h-12 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 cursor-pointer {{ $reaction === 'angry' ? 'ring-2 ring-teal-600 dark:ring-purple-900' : '' }}">
+                        😡
+                    </button>
+                </div>
+            </form>
             <ul class="flex flex-wrap gap-2">
                 @forelse ($post->likes as $user)
                     <li class="flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400">
@@ -89,7 +119,9 @@
                         </span>
                     </li>
                 @empty
-                    <span class="text-sm text-gray-600 dark:text-gray-400">Aucune réaction</span>
+                    <span class="text-sm text-gray-600 dark:text-gray-400">
+                        {{ trans_choice('ui.posts.likes_count', 0) }}
+                    </span>
                 @endforelse
             </ul>
         </footer>

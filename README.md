@@ -53,13 +53,27 @@ Pour développer et tester le mini-projet en local, voici les étapes à suivre 
     php artisan key:generate
     ```
 
-5. Créer la base de données et exécuter les migrations :
+5. Créer le lien symbolique pour les fichiers téléversés :
+
+    ```bash
+    php artisan storage:link
+    ```
+
+6. Créer la base de données et exécuter les migrations :
 
     ```bash
     php artisan migrate
     ```
 
-6. Démarrer le serveur de développement Laravel :
+    S'il est nécessaire de réinitialiser la base de données, utiliser la commande `php artisan migrate:reset` puis `php artisan migrate` à nouveau.
+
+7. Optionnel : en mode développement, il est possible de peupler la base de données avec des données fictives :
+
+    ```bash
+    migrate db:seed
+    ```
+
+8. Démarrer le serveur de développement Laravel :
 
     ```bash
     composer run dev
