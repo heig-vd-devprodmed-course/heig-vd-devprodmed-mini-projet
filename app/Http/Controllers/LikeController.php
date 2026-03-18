@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
-use App\Models\User;
 use Illuminate\Http\Request;
 
 class LikeController extends Controller
@@ -15,7 +14,7 @@ class LikeController extends Controller
         ]);
 
         $post = Post::findOrFail($id);
-        $user = User::where('id', 2)->first();
+        $user = $request->user();
         $reaction = $validated['reaction'];
 
         // Vérifie si la personne avait déjà liké ce post

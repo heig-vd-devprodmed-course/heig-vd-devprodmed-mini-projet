@@ -31,9 +31,31 @@
                         {{ __('ui.posts.index.title') }}
                     </a>
                 </div>
-                <a href="{{ url('/my-profile') }}" class="block hover:opacity-80 transition">
-                    <img src="/icons/profile.svg" alt="{{ __('ui.profile.title') }}" class="h-8 w-8 rounded-full" />
-                </a>
+
+                @auth
+                    <a href="{{ url('/my-profile') }}" class="block hover:opacity-80 transition">
+                        <div
+                            class="h-8 w-8 rounded-full overflow-hidden bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+                            @if (Auth::user()->profile_picture)
+                                <img src="{{ asset('storage/' . Auth::user()->profile_picture) }}"
+                                    alt="{{ Auth::user()->username }}" class="w-full h-full object-cover">
+                            @else
+                                <img src="/icons/profile.svg" alt="{{ Auth::user()->username }}" class="h-8 w-8">
+                            @endif
+                        </div>
+                    </a>
+                @else
+                    <div class="flex items-center gap-2">
+                        <a href="{{ url('/auth/login') }}"
+                            class="block px-3 py-1 rounded-md hover:bg-teal-700 dark:hover:bg-slate-700 transition">
+                            {{ __('ui.auth.login.title') }}
+                        </a>
+                        <a href="{{ url('/auth/register') }}"
+                            class="block bg-teal-700 dark:bg-purple-900 px-3 py-1 rounded-md hover:bg-teal-800 dark:hover:bg-purple-800 transition">
+                            {{ __('ui.auth.register.title') }}
+                        </a>
+                    </div>
+                @endauth
             </div>
         </nav>
     </header>

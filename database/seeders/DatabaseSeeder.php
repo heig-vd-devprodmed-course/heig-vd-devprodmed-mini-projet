@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -21,6 +22,7 @@ class DatabaseSeeder extends Seeder
                     'last_name' => 'Doe',
                     'username' => 'johndoe',
                     'email' => 'john.doe@example.com',
+                    'password' => Hash::make('password'),
                     'created_at' => new \DateTime('2026-02-09 10:00:00'),
                     'updated_at' => new \DateTime('2026-02-09 10:00:00'),
                 ]);
@@ -32,6 +34,7 @@ class DatabaseSeeder extends Seeder
                     'last_name' => 'Doe',
                     'username' => 'janedoe',
                     'email' => 'jane.doe@example.com',
+                    'password' => Hash::make('password'),
                     'created_at' => new \DateTime('2026-02-09 11:00:00'),
                     'updated_at' => new \DateTime('2026-02-09 11:00:00'),
                 ]);

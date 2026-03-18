@@ -4,24 +4,23 @@ namespace App\Policies;
 
 use App\Models\Post;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
-class Post2Policy
+class PostPolicy
 {
     /**
      * Determine whether the user can view any models.
      */
-    public function viewAny(User $user): bool
+    public function viewAny(?User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Post $post): bool
+    public function view(?User $user, Post $post): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -29,7 +28,7 @@ class Post2Policy
      */
     public function create(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -37,7 +36,7 @@ class Post2Policy
      */
     public function update(User $user, Post $post): bool
     {
-        return false;
+        return $user->id === $post->user_id;
     }
 
     /**
@@ -45,7 +44,7 @@ class Post2Policy
      */
     public function delete(User $user, Post $post): bool
     {
-        return false;
+        return $user->id === $post->user_id;
     }
 
     /**
@@ -53,7 +52,7 @@ class Post2Policy
      */
     public function restore(User $user, Post $post): bool
     {
-        return false;
+        return $user->id === $post->user_id;
     }
 
     /**
@@ -61,6 +60,6 @@ class Post2Policy
      */
     public function forceDelete(User $user, Post $post): bool
     {
-        return false;
+        return $user->id === $post->user_id;
     }
 }

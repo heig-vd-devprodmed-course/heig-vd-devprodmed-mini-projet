@@ -20,16 +20,17 @@ Route::get('/about', function () {
 
 Route::get('/@{username}', [ProfileController::class, 'show'])->where('username', '[A-Za-z0-9-_]+');
 
-Route::resource('posts', PostController::class);
+Route::resource('posts', PostController::class)->except(['index', 'show'])->middleware('auth');
+Route::resource('posts', PostController::class)->only(['index', 'show']);
 
-Route::singleton('my-profile', MyProfileController::class)->destroyable();
+Route::singleton('my-profile', MyProfileController::class)->destroyable()->middleware('auth');
 
-Route::match(['put', 'patch'], '/likes/{post}', [LikeController::class, 'update']);
+Route::match(['put', 'patch'], '/likes/{post}', [LikeController::class, 'update'])->middleware('auth');
 
 Route::controller(AuthController::class)->group(function () {
     Route::get('/auth/register', 'showRegister');
     Route::post('/auth/register', 'register');
-    Route::get('/auth/login', 'showLogin');
+    Route::get('/auth/login', 'showLogin')->name('login');
     Route::post('/auth/login', 'login');
-    Route::post('/auth/logout', 'logout');
+    Route::post('/auth/logout', 'logout')->middleware('auth');
 });

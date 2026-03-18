@@ -37,7 +37,7 @@
         </p>
 
         <div class="flex justify-center gap-3 mt-6">
-            <a href="{{ route('my-profile.edit') }}"
+            <a href="{{ url('/my-profile/edit') }}"
                 class="px-4 py-2 bg-teal-600 dark:bg-purple-900 text-white rounded-md hover:bg-teal-700 dark:hover:bg-purple-800">
                 {{ __('ui.my_profile.show.actions.edit') }}
             </a>
@@ -45,6 +45,13 @@
                 class="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-md hover:bg-gray-300 dark:hover:bg-gray-600">
                 {{ __('ui.my_profile.show.actions.view_public') }}
             </a>
+            <form method="POST" action="{{ url('/auth/logout') }}" class="inline">
+                @csrf
+                <button type="submit"
+                    class="px-4 py-2 bg-red-600 dark:bg-red-800 text-white rounded-md hover:bg-red-700 dark:hover:bg-red-900 cursor-pointer">
+                    {{ __('ui.my_profile.show.actions.logout') }}
+                </button>
+            </form>
         </div>
     </article>
 </x-default-layout>
