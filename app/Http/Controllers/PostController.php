@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
-use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -36,7 +36,7 @@ class PostController extends Controller
             'content' => 'required|string|max:5000',
         ]);
 
-        $user = User::where('username', 'janedoe')->first();
+        $user = $request->user();
         $post = new Post();
 
         $post->title = $validated['title'];
@@ -55,14 +55,17 @@ class PostController extends Controller
     {
         $post = Post::with('user')->with('likes')->findOrFail($id);
 
-        // Get current user's reaction if exists
-        $user = User::find(2);
-        $reaction = $post->likes()->where('user_id', $user->id)->first();
+        $user = Auth::user();
+        $reaction = null;
 
-        // Vérifie si la personne a déjà liké ce post
-        if ($reaction) {
-            // Récupère la réaction au post
-            $reaction = $reaction->pivot->reaction;
+        if ($user) {
+            $reaction = $post->likes()->where('user_id', $user->id)->first();
+
+            // Vérifie si la personne a déjà liké ce post
+            if ($reaction) {
+                // Récupère la réaction au post
+                $reaction = $reaction->pivot->reaction;
+            }
         }
 
         return view('posts.show', ['post' => $post, 'reaction' => $reaction]);
