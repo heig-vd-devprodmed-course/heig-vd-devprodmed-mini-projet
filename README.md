@@ -46,20 +46,21 @@ Pour développer et tester le mini-projet en local, voici les étapes à suivre 
     composer install
     ```
 
-3. Copier le fichier `.env.example` en `.env` et modifier les variables d'environnement si nécessaire (optionnel).
-4. Générer la clé d'application Laravel :
+3. Copier le fichier `.env.example` en `.env`.
+4. Modifier les variables d'environnement si nécessaire (optionnel).
+5. Générer la clé d'application Laravel :
 
     ```bash
     php artisan key:generate
     ```
 
-5. Créer le lien symbolique pour les fichiers téléversés :
+6. Créer le lien symbolique pour les fichiers téléversés :
 
     ```bash
     php artisan storage:link
     ```
 
-6. Créer la base de données et exécuter les migrations :
+7. Créer la base de données et exécuter les migrations :
 
     ```bash
     php artisan migrate
@@ -67,13 +68,13 @@ Pour développer et tester le mini-projet en local, voici les étapes à suivre 
 
     S'il est nécessaire de réinitialiser la base de données, utiliser la commande `php artisan migrate:reset` puis `php artisan migrate` à nouveau.
 
-7. Optionnel : en mode développement, il est possible de peupler la base de données avec des données fictives :
+8. Optionnel : en mode développement, il est possible de peupler la base de données avec des données fictives :
 
     ```bash
     php artisan db:seed
     ```
 
-8. Démarrer le serveur de développement Laravel :
+9. Démarrer le serveur de développement Laravel :
 
     ```bash
     composer run dev
