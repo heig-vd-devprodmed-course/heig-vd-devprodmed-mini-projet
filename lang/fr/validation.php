@@ -17,9 +17,12 @@ return [
     'attributes' => [
         'content'         => 'contenu',
         'email'           => 'adresse e-mail',
+        'expiration_date' => "date d'expiration",
         'first_name'      => 'prénom',
         'last_name'       => 'nom',
+        'name'            => 'nom',
         'profile_picture' => 'photo de profil',
+        'scopes'          => 'permissions',
         'title'           => 'titre',
         'username'        => "nom d'utilisateur",
     ],

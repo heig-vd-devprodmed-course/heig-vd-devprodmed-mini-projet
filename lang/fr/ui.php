@@ -85,6 +85,7 @@ return [
             'actions' => [
                 'edit' => 'Modifier le profil',
                 'view_public' => 'Voir le profil public',
+                'manage_tokens' => "Gérer les jetons d'accès",
                 'logout' => 'Se déconnecter',
             ],
         ],
@@ -132,6 +133,58 @@ return [
         'introduction' => 'Ce réseau social a été créé pour permettre aux utilisateur.trices de partager leurs pensées et leurs idées avec le monde entier.',
         'disclaimer' => "Ce réseau social est un projet réalisé dans le cadre d'un cours de la HEIG-VD, Suisse.",
         'copyright' => '© :year Tous droits réservés.',
+    ],
+    'tokens' => [
+        'index' => [
+            'title' => "Jetons d'accès",
+            'description' => "Gérez vos jetons d'accès pour :app_name.",
+            'new_token_created' => 'Votre jeton a été créé. Copiez-le maintenant, il ne sera plus affiché.',
+            'no_tokens' => "Aucun jeton d'accès.",
+            'table' => [
+                'name' => 'Nom',
+                'scopes' => 'Permissions',
+                'last_used_at' => 'Dernière utilisation',
+                'expiration_date' => 'Expiration',
+                'never' => 'Jamais',
+                'no_expiry' => 'Sans expiration',
+                'actions' => 'Actions',
+                'delete' => 'Supprimer',
+                'delete_confirm' => 'Souhaitez-vous vraiment supprimer ce jeton ? Cette action est irréversible.',
+            ],
+        ],
+        'create' => [
+            'title' => "Créer un nouveau jeton d'accès",
+            'description' => "Créez un nouveau jeton d'accès pour :app_name.",
+        ],
+        'form' => [
+            'fields' => [
+                'name' => [
+                    'label' => 'Nom',
+                    'placeholder' => 'Nom du jeton',
+                ],
+                'scopes' => [
+                    'label' => 'Permissions',
+                    'options' => [
+                        'posts_create' => 'Créer des posts',
+                        'posts_read' => 'Lire les posts',
+                        'posts_update' => 'Modifier des posts',
+                        'posts_delete' => 'Supprimer des posts',
+                    ],
+                ],
+                'content' => [
+                    'label' => 'Contenu',
+                    'placeholder' => 'Contenu du jeton',
+                ],
+                'expiration_date' => [
+                    'label' => 'Expiration (optionnel)',
+                    'help' => 'Laissez vide pour un jeton sans expiration.',
+                ],
+            ],
+            'actions' => [
+                'submit' => 'Créer le jeton',
+                'cancel' => 'Annuler',
+            ],
+        ],
     ],
     'posts' => [
         'no_posts' => 'Aucun post à afficher.',
