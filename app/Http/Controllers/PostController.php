@@ -6,6 +6,7 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -33,17 +34,24 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'title' => 'nullable|string|max:255',
-            'content' => 'required|string|max:5000',
+            'title' => 'required|string|max:255',
+            'description' => 'required|string|max:5000',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:5120',
         ]);
 
         $user = $request->user();
         $post = new Post();
 
         $post->title = $validated['title'];
-        $post->content = $validated['content'];
-        $post->user()->associate($user);
+        $post->description = $validated['description'];
 
+        // Upload de l'image
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('artworks', 'public');
+            $post->image_path = $imagePath;
+        }
+
+        $post->user()->associate($user);
         $post->save();
 
         return redirect("/posts/$post->id");
@@ -90,8 +98,9 @@ class PostController extends Controller
     public function update(Request $request, string $id)
     {
         $validated = $request->validate([
-            'title' => 'nullable|string|max:255',
-            'content' => 'required|string|max:5000',
+            'title' => 'required|string|max:255',
+            'description' => 'required|string|max:5000',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
         ]);
 
         $post = Post::findOrFail($id);
@@ -99,7 +108,19 @@ class PostController extends Controller
         Gate::authorize('update', $post);
 
         $post->title = $validated['title'];
-        $post->content = $validated['content'];
+        $post->description = $validated['description'];
+
+        // Gestion de la nouvelle image
+        if ($request->hasFile('image')) {
+            // Supprimer l'ancienne image si elle existe
+            if ($post->image_path && Storage::disk('public')->exists($post->image_path)) {
+                Storage::disk('public')->delete($post->image_path);
+            }
+
+            // Upload de la nouvelle image
+            $imagePath = $request->file('image')->store('artworks', 'public');
+            $post->image_path = $imagePath;
+        }
 
         $post->save();
 
@@ -114,6 +135,11 @@ class PostController extends Controller
         $post = Post::findOrFail($id);
 
         Gate::authorize('delete', $post);
+
+        // Supprimer l'image associée
+        if ($post->image_path && Storage::disk('public')->exists($post->image_path)) {
+            Storage::disk('public')->delete($post->image_path);
+        }
 
         $post->delete();
 
