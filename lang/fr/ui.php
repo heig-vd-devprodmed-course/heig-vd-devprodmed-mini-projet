@@ -73,6 +73,38 @@ return [
             'login' => 'Se connecter',
         ],
     ],
+
+    'friends' => [
+
+        'seasons' => [
+            'index' => [
+                'title' => 'Saisons de Friends',
+                'description' => 'Navigation par saisons de la série Friends.',
+                'heading' => 'Saisons de Friends',
+                'season_label' => 'Saison :number',
+                'back' => '← Retour aux saisons',
+            ],
+        ],
+
+        'episodes' => [
+            'index' => [
+                'title' => 'Saison :season',
+                'description' => 'Liste des épisodes de la saison :season de Friends.',
+                'heading' => 'Saison :season – Épisodes',
+                'episode_label' => 'Épisode :number – :title',
+                'back' => '← Retour aux épisodes',
+            ],
+        ],
+
+        'vote' => [
+            'title' => 'Voter pour :title',
+            'description' => 'Page de vote pour l’épisode :title.',
+            'meta' => 'Saison :season – Épisode :episode',
+            'heading' => 'Noter cet épisode',
+            'placeholder' => 'La fonctionnalité de vote sera ajoutée dans une étape suivante.',
+            'back' => 'retour aux autres épisodes',
+        ],
+    ],
     'my_profile' => [
         'edit' => [
             'title' => 'Modifier son profil',

@@ -139,5 +139,12 @@ class DatabaseSeeder extends Seeder
                 ]);
             }
         );
+
+        // Seed Friends seasons and episodes
+        $this->call([
+        SeasonSeeder::class,
+        EpisodeSeeder::class,
+        ]);
+
     }
 }

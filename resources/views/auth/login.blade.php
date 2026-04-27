@@ -48,7 +48,7 @@
             <div class="mb-6">
                 <label class="flex items-center">
                     <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}
-                        class="rounded border-gray-300 dark:border-gray-600 text-teal-600 dark:text-purple-500 focus:ring-teal-500 dark:focus:ring-purple-500">
+                        class="rounded border-gray-300 dark:border-gray-600 bg-accent dark:text-purple-500 focus:ring-teal-500 dark:focus:ring-purple-500">
                     <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">
                         {{ __('ui.auth.login.form.fields.remember.label') }}
                     </span>
@@ -58,7 +58,7 @@
             <footer class="pt-4 border-t border-gray-200 dark:border-gray-700">
                 <div class="flex flex-col gap-4">
                     <button type="submit"
-                        class="w-full px-4 py-2 bg-teal-600 dark:bg-purple-900 text-white rounded-md hover:bg-teal-700 dark:hover:bg-purple-800 cursor-pointer">
+                        class="w-full px-4 py-2 text-accent dark:bg-purple-900 text-white rounded-md dark:hover:bg-purple-800 cursor-pointer">
                         {{ __('ui.auth.login.form.actions.submit') }}
                     </button>
 

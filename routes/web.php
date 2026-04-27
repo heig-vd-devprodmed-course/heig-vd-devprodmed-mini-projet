@@ -8,6 +8,9 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TokenController;
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SeasonController;
+use App\Http\Controllers\EpisodeController;
+
 
 Route::get('/', function () {
     $posts = Post::orderBy('created_at', 'desc')->with('user')->with('likes')->limit(3)->get();
@@ -18,6 +21,20 @@ Route::get('/', function () {
 Route::get('/about', function () {
     return view('about');
 });
+
+
+// Friends – Saisons
+Route::get('/seasons', [SeasonController::class, 'index'])
+    ->name('seasons.index');
+
+// Friends – Épisodes d’une saison
+Route::get('/seasons/{season}/episodes', [EpisodeController::class, 'index'])
+    ->name('episodes.index');
+
+// Friends – Détail d’un épisode
+Route::get('/episodes/{episode}', [EpisodeController::class, 'show'])
+    ->name('episodes.show');
+
 
 Route::get('/@{username}', [ProfileController::class, 'show'])->where('username', '[A-Za-z0-9-_]+');
 

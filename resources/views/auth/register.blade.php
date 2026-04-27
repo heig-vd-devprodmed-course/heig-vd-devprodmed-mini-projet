@@ -94,13 +94,13 @@
             <footer class="pt-4 border-t border-gray-200 dark:border-gray-700">
                 <div class="flex flex-col gap-4">
                     <button type="submit"
-                        class="w-full px-4 py-2 bg-teal-600 dark:bg-purple-900 text-white rounded-md hover:bg-teal-700 dark:hover:bg-purple-800 cursor-pointer">
+                        class="w-full px-4 py-2 bg-accent dark:bg-purple-900 text-white rounded-md  dark:hover:bg-purple-800 cursor-pointer">
                         {{ __('ui.auth.register.form.actions.submit') }}
                     </button>
 
                     <p class="text-center text-sm text-gray-600 dark:text-gray-400">
                         {{ __('ui.auth.register.already_have_account') }}
-                        <a href="{{ url('/auth/login') }}" class="text-teal-600 dark:text-purple-400 hover:underline">
+                        <a href="{{ url('/auth/login') }}" class="text-accent dark:text-purple-400 hover:underline">
                             {{ __('ui.auth.register.login') }}
                         </a>
                     </p>
