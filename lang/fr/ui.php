@@ -7,8 +7,8 @@ return [
         'title' => 'Accueil',
         'description' => "Page d'accueil de la galerie d'art.",
         'introduction' => 'Bienvenue sur :app_name !',
-        'recent_posts' => 'Œuvres récentes',
-        'see_all_posts' => 'Voir toutes les œuvres',
+        'recent_paintings' => 'Œuvres récentes',
+        'see_all_paintings' => 'Voir toutes les œuvres',
     ],
     'auth' => [
         'login' => [
@@ -123,8 +123,8 @@ return [
     'profile' => [
         'title' => 'Profil de :username',
         'description' => 'Page de profil pour :username.',
-        'posts_heading' => 'Œuvres de :first_name :last_name',
-        'number_of_posts' => '{0} Aucune œuvre|{1} :count œuvre|[2,*] :count œuvres',
+        'paintings_heading' => 'Œuvres de :first_name :last_name',
+        'number_of_paintings' => '{0} Aucune œuvre|{1} :count œuvre|[2,*] :count œuvres',
         'member_since' => 'Membre depuis le :date.',
     ],
     'about' => [
@@ -165,10 +165,10 @@ return [
                 'scopes' => [
                     'label' => 'Permissions',
                     'options' => [
-                        'posts_create' => 'Créer des posts',
-                        'posts_read' => 'Lire les posts',
-                        'posts_update' => 'Modifier des posts',
-                        'posts_delete' => 'Supprimer des posts',
+                        'paintings_create' => 'Créer des œuvres',
+                        'paintings_read' => 'Lire les œuvres',
+                        'paintings_update' => 'Modifier des œuvres',
+                        'paintings_delete' => 'Supprimer des œuvres',
                     ],
                 ],
                 'content' => [
@@ -186,10 +186,10 @@ return [
             ],
         ],
     ],
-    'posts' => [
-        'no_posts' => 'Aucune œuvre à afficher.',
+    'paintings' => [
+        'no_paintings' => 'Aucune œuvre à afficher.',
         'likes_count' => '{0} Aucune réaction|{1} :count réaction|[2,*] :count réactions',
-        'view_post' => 'Voir l\'œuvre',
+        'view_painting' => 'Voir l\'œuvre',
         'create' => [
             'title' => 'Créer une nouvelle œuvre',
             'description' => 'Créez une nouvelle œuvre pour partager votre travail sur :app_name.',
@@ -217,16 +217,16 @@ return [
             'description' => 'Découvrez toutes les œuvres de :app_name.',
         ],
         'edit' => [
-            'title' => 'Modifier l\'œuvre ":post_title"',
-            'title_without_post_title' => 'Modifier l\'œuvre',
-            'description' => 'Modifiez l\'œuvre ":post_title" pour mettre à jour ses informations.',
-            'description_without_post_title' => 'Modifiez l\'œuvre pour mettre à jour ses informations.',
+            'title' => 'Modifier l\'œuvre ":painting_title"',
+            'title_without_painting_title' => 'Modifier l\'œuvre',
+            'description' => 'Modifiez l\'œuvre ":painting_title" pour mettre à jour ses informations.',
+            'description_without_painting_title' => 'Modifiez l\'œuvre pour mettre à jour ses informations.',
         ],
         'show' => [
-            'title' => '":post_title" par :first_name :last_name',
-            'title_without_post_title' => 'Œuvre par :first_name :last_name',
-            'description' => '":post_title" par :first_name :last_name.',
-            'description_without_post_title' => 'Œuvre de :first_name :last_name.',
+            'title' => '":painting_title" par :first_name :last_name',
+            'title_without_painting_title' => 'Œuvre par :first_name :last_name',
+            'description' => '":painting_title" par :first_name :last_name.',
+            'description_without_painting_title' => 'Œuvre de :first_name :last_name.',
             'author' => 'Œuvre de :first_name :last_name',
         ],
     ],

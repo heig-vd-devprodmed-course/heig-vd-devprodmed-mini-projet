@@ -3,20 +3,20 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
-use App\Models\Post;
+use App\Models\Painting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
-class ApiPostController extends Controller
+class ApiPaintingController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $posts = Post::orderBy('created_at', 'desc')->with('user')->with('likes')->get();
+        $paintings = Painting::orderBy('created_at', 'desc')->with('user')->with('likes')->get();
 
-        return $posts;
+        return $paintings;
     }
 
     /**
@@ -30,15 +30,15 @@ class ApiPostController extends Controller
         ]);
 
         $user = $request->user();
-        $post = new Post();
+        $painting = new Painting();
 
-        $post->title = $validated['title'];
-        $post->content = $validated['content'];
-        $post->user()->associate($user);
+        $painting->title = $validated['title'];
+        $painting->content = $validated['content'];
+        $painting->user()->associate($user);
 
-        $post->save();
+        $painting->save();
 
-        return $post;
+        return $painting;
     }
 
     /**
@@ -46,9 +46,9 @@ class ApiPostController extends Controller
      */
     public function show(string $id)
     {
-        $post = Post::with('user')->with('likes')->findOrFail($id);
+        $painting = Painting::with('user')->with('likes')->findOrFail($id);
 
-        return $post;
+        return $painting;
     }
 
     /**
@@ -61,16 +61,16 @@ class ApiPostController extends Controller
             'content' => 'required|string|max:5000',
         ]);
 
-        $post = Post::findOrFail($id);
+        $painting = Painting::findOrFail($id);
 
-        Gate::authorize('update', $post);
+        Gate::authorize('update', $painting);
 
-        $post->title = $validated['title'];
-        $post->content = $validated['content'];
+        $painting->title = $validated['title'];
+        $painting->content = $validated['content'];
 
-        $post->save();
+        $painting->save();
 
-        return $post;
+        return $painting;
     }
 
     /**
@@ -78,11 +78,11 @@ class ApiPostController extends Controller
      */
     public function destroy(string $id)
     {
-        $post = Post::findOrFail($id);
+        $painting = Painting::findOrFail($id);
 
-        Gate::authorize('delete', $post);
+        Gate::authorize('delete', $painting);
 
-        $post->delete();
+        $painting->delete();
 
         return response()->noContent();
     }

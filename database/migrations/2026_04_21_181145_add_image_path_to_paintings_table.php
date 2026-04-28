@@ -11,9 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('posts', function (Blueprint $table) {
+        Schema::table('paintings', function (Blueprint $table) {
             $table->string('image_path')->default('')->after('title');
-            $table->renameColumn('content', 'description');
         });
     }
 
@@ -22,9 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('posts', function (Blueprint $table) {
+        Schema::table('paintings', function (Blueprint $table) {
             $table->dropColumn('image_path');
-            $table->renameColumn('description', 'content');
         });
     }
 };

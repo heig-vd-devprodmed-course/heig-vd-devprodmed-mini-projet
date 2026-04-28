@@ -35,19 +35,19 @@
 
     <div class="mb-6">
         <h2 class="text-xl font-bold dark:text-white">
-            {{ __('ui.profile.posts_heading', ['first_name' => $user->first_name, 'last_name' => $user->last_name]) }}
+            {{ __('ui.profile.paintings_heading', ['first_name' => $user->first_name, 'last_name' => $user->last_name]) }}
         </h2>
         <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
-            {{ trans_choice('ui.profile.number_of_posts', count($posts)) }}
+            {{ trans_choice('ui.profile.number_of_paintings', count($paintings)) }}
         </p>
     </div>
 
     <div class="space-y-6">
-        @forelse ($posts as $post)
-            <x-post-card :post="$post" />
+        @forelse ($paintings as $painting)
+            <x-painting-card :painting="$painting" />
         @empty
             <p class="text-center text-gray-500 dark:text-gray-400">
-                {{ __('ui.posts.no_posts') }}
+                {{ __('ui.paintings.no_paintings') }}
             </p>
         @endforelse
     </div>

@@ -2,22 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
+use App\Models\Painting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 
-class PostController extends Controller
+class PaintingController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $posts = Post::orderBy('created_at', 'desc')->with('user')->with('likes')->get();
+        $paintings = Painting::orderBy('created_at', 'desc')->with('user')->with('likes')->get();
 
-        return view('posts.index', ['posts' => $posts]);
+        return view('paintings.index', ['paintings' => $paintings]);
     }
 
     /**
@@ -25,7 +25,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        return view('paintings.create');
     }
 
     /**
@@ -40,21 +40,21 @@ class PostController extends Controller
         ]);
 
         $user = $request->user();
-        $post = new Post();
+        $painting = new Painting();
 
-        $post->title = $validated['title'];
-        $post->description = $validated['description'];
+        $painting->title = $validated['title'];
+        $painting->description = $validated['description'];
 
         // Upload de l'image
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('artworks', 'public');
-            $post->image_path = $imagePath;
+            $painting->image_path = $imagePath;
         }
 
-        $post->user()->associate($user);
-        $post->save();
+        $painting->user()->associate($user);
+        $painting->save();
 
-        return redirect("/posts/$post->id");
+        return redirect("/paintings/$painting->id");
     }
 
     /**
@@ -62,22 +62,22 @@ class PostController extends Controller
      */
     public function show(string $id)
     {
-        $post = Post::with('user')->with('likes')->findOrFail($id);
+        $painting = Painting::with('user')->with('likes')->findOrFail($id);
 
         $user = Auth::user();
         $reaction = null;
 
         if ($user) {
-            $reaction = $post->likes()->where('user_id', $user->id)->first();
+            $reaction = $painting->likes()->where('user_id', $user->id)->first();
 
-            // Vérifie si la personne a déjà liké ce post
+            // Vérifie si la personne a déjà liké cette peinture
             if ($reaction) {
-                // Récupère la réaction au post
+                // Récupère la réaction a la peinture
                 $reaction = $reaction->pivot->reaction;
             }
         }
 
-        return view('posts.show', ['post' => $post, 'reaction' => $reaction]);
+        return view('paintings.show', ['painting' => $painting, 'reaction' => $reaction]);
     }
 
     /**
@@ -85,11 +85,11 @@ class PostController extends Controller
      */
     public function edit(string $id)
     {
-        $post = Post::findOrFail($id);
+        $painting = Painting::findOrFail($id);
 
-        Gate::authorize('update', $post);
+        Gate::authorize('update', $painting);
 
-        return view('posts.edit', ['post' => $post]);
+        return view('paintings.edit', ['painting' => $painting]);
     }
 
     /**
@@ -103,28 +103,28 @@ class PostController extends Controller
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
         ]);
 
-        $post = Post::findOrFail($id);
+        $painting = Painting::findOrFail($id);
 
-        Gate::authorize('update', $post);
+        Gate::authorize('update', $painting);
 
-        $post->title = $validated['title'];
-        $post->description = $validated['description'];
+        $painting->title = $validated['title'];
+        $painting->description = $validated['description'];
 
         // Gestion de la nouvelle image
         if ($request->hasFile('image')) {
             // Supprimer l'ancienne image si elle existe
-            if ($post->image_path && Storage::disk('public')->exists($post->image_path)) {
-                Storage::disk('public')->delete($post->image_path);
+            if ($painting->image_path && Storage::disk('public')->exists($painting->image_path)) {
+                Storage::disk('public')->delete($painting->image_path);
             }
 
             // Upload de la nouvelle image
             $imagePath = $request->file('image')->store('artworks', 'public');
-            $post->image_path = $imagePath;
+            $painting->image_path = $imagePath;
         }
 
-        $post->save();
+        $painting->save();
 
-        return redirect("/posts/$post->id");
+        return redirect("/paintings/$painting->id");
     }
 
     /**
@@ -132,17 +132,17 @@ class PostController extends Controller
      */
     public function destroy(string $id)
     {
-        $post = Post::findOrFail($id);
+        $painting = Painting::findOrFail($id);
 
-        Gate::authorize('delete', $post);
+        Gate::authorize('delete', $painting);
 
         // Supprimer l'image associée
-        if ($post->image_path && Storage::disk('public')->exists($post->image_path)) {
-            Storage::disk('public')->delete($post->image_path);
+        if ($painting->image_path && Storage::disk('public')->exists($painting->image_path)) {
+            Storage::disk('public')->delete($painting->image_path);
         }
 
-        $post->delete();
+        $painting->delete();
 
-        return redirect("/posts");
+        return redirect("/paintings");
     }
 }

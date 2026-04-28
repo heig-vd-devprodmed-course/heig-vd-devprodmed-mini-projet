@@ -1,81 +1,81 @@
 <x-default-layout>
     <x-slot:title>
-        @if ($post->title)
-            {{ __('ui.posts.show.title', [
-                'post_title' => $post->title,
-                'first_name' => $post->user->first_name,
-                'last_name' => $post->user->last_name,
+        @if ($painting->title)
+            {{ __('ui.paintings.show.title', [
+                'painting_title' => $painting->title,
+                'first_name' => $painting->user->first_name,
+                'last_name' => $painting->user->last_name,
             ]) }}
         @else
-            {{ __('ui.posts.show.title_without_post_title', [
-                'first_name' => $post->user->first_name,
-                'last_name' => $post->user->last_name,
+            {{ __('ui.paintings.show.title_without_painting_title', [
+                'first_name' => $painting->user->first_name,
+                'last_name' => $painting->user->last_name,
             ]) }}
         @endif
     </x-slot>
 
     <x-slot:description>
-        @if ($post->title)
-            {{ __('ui.posts.show.description', [
-                'post_title' => $post->title,
-                'first_name' => $post->user->first_name,
-                'last_name' => $post->user->last_name,
+        @if ($painting->title)
+            {{ __('ui.paintings.show.description', [
+                'painting_title' => $painting->title,
+                'first_name' => $painting->user->first_name,
+                'last_name' => $painting->user->last_name,
             ]) }}
         @else
-            {{ __('ui.posts.show.description_without_post_title', [
-                'first_name' => $post->user->first_name,
-                'last_name' => $post->user->last_name,
+            {{ __('ui.paintings.show.description_without_painting_title', [
+                'first_name' => $painting->user->first_name,
+                'last_name' => $painting->user->last_name,
             ]) }}
         @endif
     </x-slot>
 
     <article class="bg-white dark:bg-slate-800 rounded-lg shadow-md p-6">
         <header class="mb-6">
-            @if ($post->title)
+            @if ($painting->title)
                 <h1 class="text-3xl font-bold dark:text-white mb-2">
-                    {{ $post->title }}
+                    {{ $painting->title }}
                 </h1>
             @endif
 
             <p class="text-sm text-gray-600 dark:text-gray-400">
-                <a href="{{ url('@' . $post->user->username) }}">
-                    {{ __('ui.posts.show.author', [
-                        'first_name' => $post->user->first_name,
-                        'last_name' => $post->user->last_name,
+                <a href="{{ url('@' . $painting->user->username) }}">
+                    {{ __('ui.paintings.show.author', [
+                        'first_name' => $painting->user->first_name,
+                        'last_name' => $painting->user->last_name,
                     ]) }}
                 </a>
                 ·
-                <span title="{{ $post->created_at->isoFormat('LLLL') }}">
-                    {{ $post->created_at->diffForHumans() }}
+                <span title="{{ $painting->created_at->isoFormat('LLLL') }}">
+                    {{ $painting->created_at->diffForHumans() }}
                 </span>
-                @can('update', $post)
+                @can('update', $painting)
                     ·
-                    <a href="{{ url('/posts/' . $post->id . '/edit') }}">
-                        {{ __('ui.posts.edit.title_without_post_title') }}
+                    <a href="{{ url('/paintings/' . $painting->id . '/edit') }}">
+                        {{ __('ui.paintings.edit.title_without_painting_title') }}
                     </a>
                 @endcan
                 ·
                 <span class="font-semibold">
-                    {{ trans_choice('ui.posts.likes_count', count($post->likes)) }}
+                    {{ trans_choice('ui.paintings.likes_count', count($painting->likes)) }}
                 </span>
             </p>
         </header>
 
         <div class="mb-6">
-            @if ($post->image_path)
-                <img src="{{ asset('storage/' . $post->image_path) }}" alt="{{ $post->title }}" class="w-full rounded-lg mb-4">
+            @if ($painting->image_path)
+                <img src="{{ asset('storage/' . $painting->image_path) }}" alt="{{ $painting->title }}" class="w-full rounded-lg mb-4">
             @endif
         </div>
 
         <div class="mb-4">
             <p class="mt-4 dark:text-gray-300">
-                {{ $post->description }}
+                {{ $painting->description }}
             </p>
         </div>
 
         <footer class="pt-4 border-t border-gray-200 dark:border-gray-700">
             @auth
-                <form method="POST" action="{{ url('/likes/' . $post->id) }}" class="mb-4">
+                <form method="POST" action="{{ url('/likes/' . $painting->id) }}" class="mb-4">
                     @csrf
                     @method('PUT')
                     <div class="flex flex-wrap justify-between gap-2">
@@ -107,7 +107,7 @@
                 </form>
             @endauth
             <ul class="flex flex-wrap gap-2">
-                @forelse ($post->likes as $user)
+                @forelse ($painting->likes as $user)
                     <li class="flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400">
                         <a href="{{ url('@' . $user->username) }}" class="font-semibold hover:underline">
                             {{ '@' . $user->username }}
@@ -130,7 +130,7 @@
                     </li>
                 @empty
                     <span class="text-sm text-gray-600 dark:text-gray-400">
-                        {{ trans_choice('ui.posts.likes_count', 0) }}
+                        {{ trans_choice('ui.paintings.likes_count', 0) }}
                     </span>
                 @endforelse
             </ul>
