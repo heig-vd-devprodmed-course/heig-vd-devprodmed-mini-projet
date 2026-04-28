@@ -61,9 +61,15 @@
             </p>
         </header>
 
+        <div class="mb-6">
+            @if ($post->image_path)
+                <img src="{{ asset('storage/' . $post->image_path) }}" alt="{{ $post->title }}" class="w-full rounded-lg mb-4">
+            @endif
+        </div>
+
         <div class="mb-4">
             <p class="mt-4 dark:text-gray-300">
-                {{ $post->content }}
+                {{ $post->description }}
             </p>
         </div>
 

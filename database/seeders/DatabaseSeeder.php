@@ -45,7 +45,8 @@ class DatabaseSeeder extends Seeder
                         'id' => 1,
                         'user_id' => 1,
                         'title' => "John's First Post",
-                        'content' => "This is the content of John's first post.",
+                        'description' => "This is the content of John's first post.",
+                        'image_path' => 'artworks/placeholder-1.jpg',
                         'created_at' => new \DateTime('2026-02-09 12:00:00'),
                         'updated_at' => new \DateTime('2026-02-09 12:00:00'),
                     ],
@@ -53,7 +54,8 @@ class DatabaseSeeder extends Seeder
                         'id' => 2,
                         'user_id' => 1,
                         'title' => null,
-                        'content' => "This is the content of John's second post.",
+                        'description' => "This is the content of John's second post.",
+                        'image_path' => 'artworks/placeholder-2.jpg',
                         'created_at' => new \DateTime('2026-02-09 12:05:00'),
                         'updated_at' => new \DateTime('2026-02-09 12:05:00'),
                     ],
@@ -61,7 +63,8 @@ class DatabaseSeeder extends Seeder
                         'id' => 3,
                         'user_id' => 1,
                         'title' => null,
-                        'content' => "This is the content of John's third post.",
+                        'description' => "This is the content of John's third post.",
+                        'image_path' => 'artworks/placeholder-3.jpg',
                         'created_at' => new \DateTime('2026-02-09 12:10:00'),
                         'updated_at' => new \DateTime('2026-02-09 12:10:00'),
                     ]
@@ -73,7 +76,8 @@ class DatabaseSeeder extends Seeder
                         'id' => 4,
                         'user_id' => 2,
                         'title' => null,
-                        'content' => "This is the content of Jane's first post.",
+                        'description' => "This is the content of Jane's first post.",
+                        'image_path' => 'artworks/placeholder-4.jpg',
                         'created_at' => new \DateTime('2026-02-09 12:05:00'),
                         'updated_at' => new \DateTime('2026-02-09 12:05:00'),
                     ],
@@ -81,7 +85,8 @@ class DatabaseSeeder extends Seeder
                         'id' => 5,
                         'user_id' => 2,
                         'title' => "Jane's Second Post",
-                        'content' => "This is the content of Jane's second post.",
+                        'description' => "This is the content of Jane's second post.",
+                        'image_path' => 'artworks/placeholder-5.jpg',
                         'created_at' => new \DateTime('2026-02-09 12:10:00'),
                         'updated_at' => new \DateTime('2026-02-09 12:10:00'),
                     ],
@@ -89,7 +94,8 @@ class DatabaseSeeder extends Seeder
                         'id' => 6,
                         'user_id' => 2,
                         'title' => "Jane's Third Post",
-                        'content' => "This is the content of Jane's third post.",
+                        'description' => "This is the content of Jane's third post.",
+                        'image_path' => 'artworks/placeholder-6.jpg',
                         'created_at' => new \DateTime('2026-02-09 12:15:00'),
                         'updated_at' => new \DateTime('2026-02-09 12:15:00'),
                     ]
@@ -139,5 +145,8 @@ class DatabaseSeeder extends Seeder
                 ]);
             }
         );
+
+        // Appelle le PostSeeder pour générer des œuvres de test
+        $this->call(PostSeeder::class);
     }
 }
