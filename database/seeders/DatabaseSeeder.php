@@ -13,6 +13,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        $this->call([
+            SeasonSeeder::class,
+            EpisodeSeeder::class,
+        ]);
+
         DB::transaction(
             function () {
                 // Insert John Doe into the users table

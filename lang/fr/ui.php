@@ -3,6 +3,43 @@
 declare(strict_types=1);
 
 return [
+    'friends' => [
+        'voter' => 'Participez aux votes',
+        'seasons' => [
+            'index' => [
+                'title' => 'Saisons de Friends',
+                'description' => 'Navigation par saisons de la série Friends.',
+                'heading' => 'Saisons de Friends',
+                'season_label' => 'Saison :number',
+                'back' => '← Retour aux saisons',
+            ],
+        ],
+        'episodes' => [
+            'index' => [
+                'title' => 'Saison :season',
+                'description' => 'Liste des épisodes de la saison :season.',
+                'heading' => 'Saison :season – Épisodes',
+                'episode_label' => 'Épisode :number – :title',
+                'back' => '← Retour aux épisodes',
+            ],
+        ],
+        'vote' => [
+            'title' => 'Voter pour :title',
+            'description' => 'Page de vote pour l’épisode :title.',
+            'meta' => 'Saison :season – Épisode :episode',
+            'heading' => 'Noter cet épisode',
+            'placeholder' => 'La fonctionnalité de vote sera ajoutée plus tard.',
+
+            'select_label' => 'Votre note (1 à 5)',
+            'submit' => 'Envoyer ma note',
+            'login_required' => 'Vous devez être connecté pour noter cet épisode.',
+            'login_link' => 'Se connecter',
+            'your_rating' => 'Votre note : :rating / 5',
+            'average_heading' => 'Note moyenne',
+            'average' => 'Moyenne : :average / 5',
+            'no_ratings_yet' => 'Aucune note pour le moment.',
+        ],
+    ],
     'home' => [
         'title' => 'Accueil',
         'description' => "Page d'accueil du réseau social.",

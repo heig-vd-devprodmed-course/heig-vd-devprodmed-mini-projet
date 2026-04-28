@@ -8,6 +8,10 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TokenController;
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SeasonController;
+use App\Http\Controllers\EpisodeController;
+use App\Http\Controllers\RatingController;
+
 
 Route::get('/', function () {
     $posts = Post::orderBy('created_at', 'desc')->with('user')->with('likes')->limit(3)->get();
@@ -37,3 +41,18 @@ Route::controller(AuthController::class)->group(function () {
 });
 
 Route::resource('tokens', TokenController::class)->only(['index', 'create', 'store', 'destroy'])->middleware('auth');
+
+
+Route::get('/seasons', [SeasonController::class, 'index'])
+    ->name('seasons.index');
+
+Route::get('/seasons/{season}/episodes', [EpisodeController::class, 'index'])
+    ->name('episodes.index');
+
+Route::get('/episodes/{episode}', [EpisodeController::class, 'show'])
+    ->name('episodes.show');
+
+//crée une note, auth obligatoire, et nom de route -> vue
+Route::post('/episodes/{episode}/ratings', [RatingController::class, 'store'])
+    ->middleware('auth')
+    ->name('ratings.store');

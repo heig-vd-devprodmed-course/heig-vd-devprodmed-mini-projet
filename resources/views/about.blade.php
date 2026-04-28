@@ -7,15 +7,15 @@
         {{ __('ui.about.description') }}
     </x-slot>
 
-    <h1 class="text-2xl font-bold">
+    <h1 class="text-2xl font-bold text-text">
         {{ __('ui.about.title') }}
     </h1>
 
-    <p class="mt-4">
+    <p class="mt-4 text-text">
         {{ __('ui.about.introduction') }}
     </p>
 
-    <p class="mt-4">
+    <p class="mt-4 text-text">
         {{ __('ui.about.disclaimer') }}
     </p>
 </x-default-layout>
