@@ -27,7 +27,9 @@
         <p class="text-lg text-gray-600 dark:text-gray-400 mt-1">
             {{ '@' . $user->username }}
         </p>
-
+        @if($user->is_admin)
+            <span class="text-xs bg-red-600 text-white px-2 py-0.5 rounded-full">Admin</span>
+        @endif
         <p class="mt-4 dark:text-gray-300">
             {{ __('ui.profile.member_since', ['date' => $user->created_at->isoFormat('LL')]) }}
         </p>

@@ -59,6 +59,17 @@
                     {{ trans_choice('ui.paintings.likes_count', count($painting->likes)) }}
                 </span>
             </p>
+
+            @can('delete', $painting)
+    <form method="POST" action="{{ url('/paintings/' . $painting->id) }}">
+        @csrf
+        @method('DELETE')
+        <button type="submit" onclick="return confirm('Supprimer cette œuvre ?')"
+            class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 cursor-pointer">
+            Supprimer
+        </button>
+    </form>
+@endcan
         </header>
 
         <div class="mb-6">

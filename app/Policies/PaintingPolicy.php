@@ -44,7 +44,7 @@ class PaintingPolicy
      */
     public function delete(User $user, Painting $painting): bool
     {
-        return $user->id === $painting->user_id;
+        return $user->id === $painting->user_id || $user->is_admin;
     }
 
     /**
