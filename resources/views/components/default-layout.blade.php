@@ -33,6 +33,10 @@
                 </div>
 
                 @auth
+                <div class="flex items-center gap-2">
+        @if(Auth::user()->is_admin)
+            <span class="text-xs bg-red-600 text-white px-2 py-0.5 rounded-full">Admin</span>
+        @endif
                     <a href="{{ url('/my-profile') }}" class="block hover:opacity-80 transition">
                         <div
                             class="h-8 w-8 rounded-full overflow-hidden bg-gray-200 dark:bg-gray-700 flex items-center justify-center">

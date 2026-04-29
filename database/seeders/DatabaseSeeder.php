@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
                 'password' => Hash::make('password'),
                 'created_at' => new \DateTime('2026-02-09 10:00:00'),
                 'updated_at' => new \DateTime('2026-02-09 10:00:00'),
+                'is_admin' => true,
             ],
             [
                 'id' => 2,
@@ -31,6 +32,7 @@ class DatabaseSeeder extends Seeder
                 'password' => Hash::make('password'),
                 'created_at' => new \DateTime('2026-02-09 11:00:00'),
                 'updated_at' => new \DateTime('2026-02-09 11:00:00'),
+                'is_admin' => false,
             ],
         ]);
 
