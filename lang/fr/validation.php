@@ -16,9 +16,11 @@ return [
     'ascii'                  => 'Le champ :attribute ne doit contenir que des caractères alphanumériques et des symboles codés sur un octet.',
     'attributes' => [
         'content'         => 'contenu',
+        'description'     => 'description',
         'email'           => 'adresse e-mail',
         'expiration_date' => "date d'expiration",
         'first_name'      => 'prénom',
+        'image'           => 'image',
         'last_name'       => 'nom',
         'name'            => 'nom',
         'profile_picture' => 'photo de profil',

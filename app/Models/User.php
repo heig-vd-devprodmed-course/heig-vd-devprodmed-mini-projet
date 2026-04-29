@@ -14,18 +14,18 @@ class User extends Authenticatable
     protected $hidden = ['password', 'remember_token'];
 
     /**
-     * Get the posts for the user.
+     * Get the paintings for the user.
      */
-    public function posts(): HasMany
+    public function paintings(): HasMany
     {
-        return $this->hasMany(Post::class);
+        return $this->hasMany(Painting::class);
     }
 
     /**
-     * Get the posts liked by the user.
+     * Get the paintings liked by the user.
      */
     public function likes(): BelongsToMany
     {
-        return $this->belongsToMany(Post::class, 'likes')->using(Like::class)->withTimestamps()->withPivot('reaction');
+        return $this->belongsToMany(Painting::class, 'likes')->using(Like::class)->withTimestamps()->withPivot('reaction');
     }
 }
