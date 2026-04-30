@@ -13,9 +13,15 @@ class PaintingController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $paintings = Painting::orderBy('created_at', 'desc')->with('user')->with('likes')->get();
+        $query = Painting::orderBy('created_at', 'desc')->with('user')->with('likes');
+
+        if ($request->has('category') && $request->input('category') !== '') {
+            $query->where('category', $request->input('category'));
+        }
+
+        $paintings = $query->get();
 
         return view('paintings.index', ['paintings' => $paintings]);
     }
