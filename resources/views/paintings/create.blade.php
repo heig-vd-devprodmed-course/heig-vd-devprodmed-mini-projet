@@ -35,7 +35,7 @@
 
             <div class="mb-6">
                 <label for="image" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    Image de l'œuvre
+                    {{ __('ui.paintings.form.fields.image.label') }}
                 </label>
                 <input id="image" type="file" name="image" accept="image/*"
                     class="w-full px-3 py-2 border rounded-md bg-white dark:bg-slate-700 text-gray-900 dark:text-white focus:ring-2 focus:border-transparent @error('image') border-red-500 focus:ring-red-500 @else border-gray-300 dark:border-gray-600 focus:ring-teal-500 dark:focus:ring-purple-500 @enderror">
@@ -58,21 +58,21 @@
 
             <div class="mb-4">
     <label for="category" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-        Catégorie
+        {{ __('ui.paintings.form.fields.category.label') }}
     </label>
     <select id="category" name="category"
         class="w-full px-3 py-2 border rounded-md bg-white dark:bg-slate-700 text-gray-900 dark:text-white">
-        <option value="">-- Choisir une catégorie --</option>
-        <option value="acrylique" {{ old('category', $painting->category ?? '') == 'acrylique' ? 'selected' : '' }}>Acrylique</option>
-        <option value="gouache" {{ old('category', $painting->category ?? '') == 'gouache' ? 'selected' : '' }}>Gouache</option>
-        <option value="aquarelle" {{ old('category', $painting->category ?? '') == 'aquarelle' ? 'selected' : '' }}>Aquarelle</option>
-        <option value="huile" {{ old('category', $painting->category ?? '') == 'huile' ? 'selected' : '' }}>Peinture à l'huile</option>
+        <option value="">-- {{ __('ui.paintings.form.fields.category.placeholder') }} --</option>
+        <option value="acrylique" {{ old('category', $painting->category ?? '') == 'acrylique' ? 'selected' : '' }}>{{ __('ui.paintings.form.fields.options.acrylique') }}</option>
+        <option value="gouache" {{ old('category', $painting->category ?? '') == 'gouache' ? 'selected' : '' }}>{{ __('ui.paintings.form.fields.options.gouache') }}</option>
+        <option value="aquarelle" {{ old('category', $painting->category ?? '') == 'aquarelle' ? 'selected' : '' }}>{{ __('ui.paintings.form.fields.options.aquarelle') }}</option>
+        <option value="huile" {{ old('category', $painting->category ?? '') == 'huile' ? 'selected' : '' }}>{{ __('ui.paintings.form.fields.options.huile') }}</option>
     </select>
 </div>
 
             <div class="mb-4">
     <label for="dimensions" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-        Dimensions (ex: 50x70 cm)
+        {{ __('ui.paintings.form.fields.dimensions.label') }}
     </label>
     <input id="dimensions" type="text" name="dimensions" value="{{ old('dimensions') }}"
         placeholder="ex: 50x70 cm"
@@ -84,7 +84,7 @@
 
 <div class="mb-6">
     <label for="year" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-        Année de création
+        {{ __('ui.paintings.form.fields.year.label') }}
     </label>
     <input id="year" type="number" name="year" value="{{ old('year') }}"
         placeholder="ex: 2023" min="1800" max="2026"

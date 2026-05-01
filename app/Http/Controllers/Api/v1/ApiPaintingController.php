@@ -22,7 +22,6 @@ class ApiPaintingController extends Controller
                     : null;;
                 return $painting; //retourne url complète
             });
-        return $paintings;
 
         return response()->json($paintings, 200);
     }

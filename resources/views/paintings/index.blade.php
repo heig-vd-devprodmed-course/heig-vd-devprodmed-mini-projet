@@ -26,11 +26,11 @@
     <form method="GET" action="{{ url('/paintings') }}" class="mt-4">
         <select name="category" onchange="this.form.submit()"
             class="px-3 py-2 border rounded-md bg-white dark:bg-slate-700 text-gray-900 dark:text-white border-gray-300 dark:border-gray-600">
-            <option value="">Toutes les catégories</option>
-            <option value="acrylique" {{ request('category') == 'acrylique' ? 'selected' : '' }}>Acrylique</option>
-            <option value="gouache" {{ request('category') == 'gouache' ? 'selected' : '' }}>Gouache</option>
-            <option value="aquarelle" {{ request('category') == 'aquarelle' ? 'selected' : '' }}>Aquarelle</option>
-            <option value="huile" {{ request('category') == 'huile' ? 'selected' : '' }}>Peinture à l'huile</option>
+            <option value="">{{ __('ui.paintings.form.fields.category.placeholder') }}</option>
+            <option value="acrylique" {{ request('category') == 'acrylique' ? 'selected' : '' }}>{{ __('ui.paintings.form.fields.options.acrylique') }}</option>
+            <option value="gouache" {{ request('category') == 'gouache' ? 'selected' : '' }}>{{ __('ui.paintings.form.fields.options.gouache') }}</option>
+            <option value="aquarelle" {{ request('category') == 'aquarelle' ? 'selected' : '' }}>{{ __('ui.paintings.form.fields.options.aquarelle') }}</option>
+            <option value="huile" {{ request('category') == 'huile' ? 'selected' : '' }}>{{ __('ui.paintings.form.fields.options.huile') }}</option>
         </select>
     </form>
 

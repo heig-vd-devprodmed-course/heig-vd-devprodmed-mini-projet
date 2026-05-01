@@ -204,11 +204,35 @@ return [
                     'label' => 'Titre',
                     'placeholder' => 'Entrez un titre pour votre œuvre',
                 ],
-                'content' => [
+                'description' => [
                     'label' => 'Description',
                     'placeholder' => 'Décrivez votre œuvre, ses inspirations, techniques...',
                 ],
+                'image' => [
+                    'label' => 'Image de l\'œuvre',
+                    'help' => 'Formats acceptés: JPG, JPEG, PNG, BMP, GIF, WEBP. Taille maximale: 5 Mo.',
+                    'placeholder' => 'Choisissez une image pour votre œuvre',
+                ],
+                'category' => [
+                    'label' => 'Catégorie',
+                    'placeholder' => 'Choisir une catégorie',
+                ],
+                'options' => [
+                    'acrylique' => 'Acrylique',
+                    'gouache' => 'Gouache',
+                    'aquarelle' => 'Aquarelle',
+                    'huile' => "Peinture à l'huile",
+                ],
+                'dimensions' => [
+                    'label' => 'Dimensions',
+                    'placeholder' => 'ex: 50x70 cm',
+                ],
+                'year' => [
+                    'label' => 'Année de création',
+                    'placeholder' => 'ex: 2023',
+                ],
             ],
+
             'actions' => [
                 'submit' => 'Sauvegarder',
                 'cancel' => 'Annuler',
@@ -232,8 +256,8 @@ return [
             'description' => '":painting_title" par :first_name :last_name.',
             'description_without_painting_title' => 'Œuvre de :first_name :last_name.',
             'author' => 'Œuvre de :first_name :last_name',
-            'dimensions' => 'Dimensions :dimensions',
-            'year' => 'Année :year',
+            'dimensions' => 'Dimensions: :dimensions',
+            'year' => 'Année: :year',
         ],
     ],
 ];

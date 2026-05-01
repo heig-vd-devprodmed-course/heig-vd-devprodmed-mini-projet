@@ -4,7 +4,7 @@
             <img src="{{ asset('storage/' . $painting->image_path) }}" alt="{{ $painting->title }}" class="w-full h-32 object-cover">
         @else
             <div class="w-full h-32 bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
-                <span class="text-gray-400">Pas d'image</span>
+                <span class="text-gray-400">{{ __('ui.paintings.form.fields.image.placeholder') }}</span>
             </div>
         @endif
     </a>

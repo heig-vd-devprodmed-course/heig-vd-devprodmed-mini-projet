@@ -86,7 +86,7 @@
 
         @if ($painting->category)
     <p class="text-sm text-gray-600 dark:text-gray-400">
-        Catégorie : <span class="font-semibold">{{ ucfirst($painting->category) }}</span>
+        {{ __('ui.paintings.form.fields.category.label') }}: <span class="font-semibold">{{ ucfirst($painting->category) }}</span>
     </p>
     @endif
 
