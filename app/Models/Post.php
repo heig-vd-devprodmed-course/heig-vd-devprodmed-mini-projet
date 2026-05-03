@@ -23,4 +23,14 @@ class Post extends Model
     {
         return $this->belongsToMany(User::class, 'likes')->using(Like::class)->withTimestamps()->withPivot('reaction');
     }
+
+    /**
+     * Un post appartient à une seule catégorie.
+     * Ex : la review de Elden Ring appartient à la catégorie "RPG"
+     * C'est une relation "belongsTo" : 1 post → 1 catégorie
+     */
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

@@ -16,6 +16,15 @@
                 <p class="text-sm text-gray-500 dark:text-gray-400" title="{{ $post->created_at->isoFormat('LLLL') }}">
                     {{ $post->created_at->diffForHumans() }}
                 </p>
+
+                {{-- Badge catégorie cliquable qui mène vers la page du genre --}}
+                @if ($post->category)
+                    <a href="{{ url('/categories/' . $post->category->slug) }}"
+                        class="inline-block mt-1 px-2 py-0.5 text-xs font-semibold bg-teal-100 dark:bg-purple-900 text-teal-800 dark:text-purple-200 rounded-full hover:opacity-80">
+                        {{ $post->category->name }}
+                    </a>
+                @endif
+
             </div>
         </div>
         @if ($post->title)

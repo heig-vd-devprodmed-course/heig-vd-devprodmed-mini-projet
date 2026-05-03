@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -10,38 +11,47 @@ use Illuminate\Support\Facades\Gate;
 class PostController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Affiche la liste de tous les posts.
      */
     public function index()
     {
-        $posts = Post::orderBy('created_at', 'desc')->with('user')->with('likes')->get();
+        $posts = Post::orderBy('created_at', 'desc')
+                     ->with('user')
+                     ->with('likes')
+                     ->with('category') // On charge aussi la catégorie de chaque post
+                     ->get();
 
         return view('posts.index', ['posts' => $posts]);
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Affiche le formulaire de création d'un post.
+     * On passe toutes les catégories à la vue pour le menu déroulant.
      */
     public function create()
     {
-        return view('posts.create');
+        $categories = Category::orderBy('name')->get();
+
+        return view('posts.create', ['categories' => $categories]);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Enregistre un nouveau post en base de données.
      */
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'title' => 'nullable|string|max:255',
-            'content' => 'required|string|max:5000',
+            'title'       => 'nullable|string|max:255',
+            'content'     => 'required|string|max:5000',
+            'category_id' => 'nullable|exists:categories,id', // l'id doit exister dans categories
         ]);
 
         $user = $request->user();
         $post = new Post();
 
-        $post->title = $validated['title'];
-        $post->content = $validated['content'];
+        $post->title       = $validated['title'];
+        $post->content     = $validated['content'];
+        $post->category_id = $validated['category_id']; // on sauvegarde la catégorie choisie
         $post->user()->associate($user);
 
         $post->save();
@@ -50,11 +60,14 @@ class PostController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Affiche un post spécifique avec ses likes et sa catégorie.
      */
     public function show(string $id)
     {
-        $post = Post::with('user')->with('likes')->findOrFail($id);
+        $post = Post::with('user')
+                    ->with('likes')
+                    ->with('category') // On charge la catégorie du post
+                    ->findOrFail($id);
 
         $user = Auth::user();
         $reaction = null;
@@ -62,9 +75,7 @@ class PostController extends Controller
         if ($user) {
             $reaction = $post->likes()->where('user_id', $user->id)->first();
 
-            // Vérifie si la personne a déjà liké ce post
             if ($reaction) {
-                // Récupère la réaction au post
                 $reaction = $reaction->pivot->reaction;
             }
         }
@@ -73,7 +84,7 @@ class PostController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Affiche le formulaire d'édition d'un post.
      */
     public function edit(string $id)
     {
@@ -81,25 +92,30 @@ class PostController extends Controller
 
         Gate::authorize('update', $post);
 
-        return view('posts.edit', ['post' => $post]);
+        // On passe les catégories pour que le <select> soit rempli
+        $categories = Category::orderBy('name')->get();
+
+        return view('posts.edit', ['post' => $post, 'categories' => $categories]);
     }
 
     /**
-     * Update the specified resource in storage.
+     * Met à jour un post existant en base de données.
      */
     public function update(Request $request, string $id)
     {
         $validated = $request->validate([
-            'title' => 'nullable|string|max:255',
-            'content' => 'required|string|max:5000',
+            'title'       => 'nullable|string|max:255',
+            'content'     => 'required|string|max:5000',
+            'category_id' => 'nullable|exists:categories,id',
         ]);
 
         $post = Post::findOrFail($id);
 
         Gate::authorize('update', $post);
 
-        $post->title = $validated['title'];
-        $post->content = $validated['content'];
+        $post->title       = $validated['title'];
+        $post->content     = $validated['content'];
+        $post->category_id = $validated['category_id'];
 
         $post->save();
 
@@ -107,7 +123,7 @@ class PostController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Supprime un post de la base de données.
      */
     public function destroy(string $id)
     {

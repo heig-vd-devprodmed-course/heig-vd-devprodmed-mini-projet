@@ -8,6 +8,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TokenController;
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CategoryController;
 
 Route::get('/', function () {
     $posts = Post::orderBy('created_at', 'desc')->with('user')->with('likes')->limit(3)->get();
@@ -37,3 +38,9 @@ Route::controller(AuthController::class)->group(function () {
 });
 
 Route::resource('tokens', TokenController::class)->only(['index', 'create', 'store', 'destroy'])->middleware('auth');
+// Routes pour les catégories
+// index et show = tout le monde peut voir les catégories et leurs posts
+// create et store = réservé aux utilisateurs connectés (middleware auth)
+Route::resource('categories', CategoryController::class)
+     ->only(['index', 'show', 'create', 'store'])
+     ->middleware(['create' => 'auth', 'store' => 'auth']);
