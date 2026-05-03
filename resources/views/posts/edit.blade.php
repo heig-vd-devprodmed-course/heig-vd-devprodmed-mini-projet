@@ -50,6 +50,26 @@
                 @enderror
             </div>
 
+            <div class="mb-4">
+    <label for="category_id"
+        class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+        Genre du jeu
+    </label>
+    <select id="category_id" name="category_id"
+        class="w-full px-3 py-2 border rounded-md bg-white dark:bg-slate-700 text-gray-900 dark:text-white focus:ring-2 focus:border-transparent border-gray-300 dark:border-gray-600 focus:ring-teal-500 dark:focus:ring-purple-500">
+
+        <option value="">-- Choisir un genre --</option>
+
+        @foreach ($categories as $category)
+            <option value="{{ $category->id }}"
+                {{-- On pré-sélectionne la catégorie actuelle du post --}}
+                {{ old('category_id', $post->category_id) == $category->id ? 'selected' : '' }}>
+                {{ $category->name }}
+            </option>
+        @endforeach
+    </select>
+</div>
+
             <div class="mb-6">
                 <label for="content" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     {{ __('ui.posts.form.fields.content.label') }}

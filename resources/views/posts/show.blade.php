@@ -58,6 +58,16 @@
                 <span class="font-semibold">
                     {{ trans_choice('ui.posts.likes_count', count($post->likes)) }}
                 </span>
+
+                {{-- Badge catégorie cliquable qui mène vers la page du genre --}}
+                @if ($post->category)
+                    ·
+                    <a href="{{ url('/categories/' . $post->category->slug) }}"
+                        class="px-2 py-0.5 text-xs font-semibold bg-teal-100 dark:bg-purple-900 text-teal-800 dark:text-purple-200 rounded-full hover:opacity-80">
+                        {{ $post->category->name }}
+                    </a>
+                @endif
+
             </p>
         </header>
 
