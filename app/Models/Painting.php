@@ -8,15 +8,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Painting extends Model
 {
-
-        protected $fillable = [ //sécurité, quels champs autorisés
-            'title',
-            'description',
-            'category',
-            'dimensions',
-            'year',
-            'image_path',
-        ];
     /**
      * Get the user that owns the painting.
      */

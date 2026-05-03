@@ -57,7 +57,7 @@ class PaintingSeeder extends Seeder
             $users = collect([$user]);
         }
 
-        // Créer 10 œuvres, changeé tous les contents en description, ajoute img_path et appel pour exectuer seeder
+        // Créer 10 œuvres, ajoute img_path et appel pour exectuer seeder
         foreach (range(1, 10) as $index) {
             Painting::create([
                 'title' => $titles[$index - 1] ?? 'Œuvre ' . $index,
@@ -65,6 +65,8 @@ class PaintingSeeder extends Seeder
                 'image_path' => 'artworks/placeholder-' . $index . '.jpg', // Image fictive pour test
                 'user_id' => $users->random()->id, // Assigner à un utilisateur aléatoire
                 'category' => collect(['acrylique', 'gouache', 'aquarelle', 'huile'])->random(),
+                'dimensions' => collect(['30x40 cm', '50x70 cm', '100x150 cm'])->random(),
+                'year' => rand(1900, 2024),
             ]);
         }
     }
