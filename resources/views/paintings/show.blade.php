@@ -64,9 +64,9 @@
     <form method="POST" action="{{ url('/paintings/' . $painting->id) }}">
         @csrf
         @method('DELETE')
-        <button type="submit" onclick="return confirm('Supprimer cette œuvre ?')"
+        <button type="submit" onclick="return confirm('{{ __('ui.paintings.confirm_delete') }}')"
             class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 cursor-pointer">
-            Supprimer
+            {{ __('ui.paintings.delete') }}
         </button>
     </form>
 @endcan
