@@ -80,4 +80,13 @@ Pour développer et tester le mini-projet en local, voici les étapes à suivre 
     composer run dev
     ```
 
+10. Utilisation de l'IA - Claude et Copilot
+Afin d'être transparente concernant son utilisation, voici les différents points auquel je m'en suis servie. 
+- Marche à suivre: établir un plan en fonction des différentes fonctionnalités que j'ai implémenté
+- Images: faire un thumbnail pour que je sois plus joli sur la page d'accueil
+- Filtre: Gestion des différentes catégories
+- Traductions
+- Autres aspects visuels comme les boutons ajoutés
+- Debug
+
 L'application sera accessible à l'adresse <http://localhost:8000>.

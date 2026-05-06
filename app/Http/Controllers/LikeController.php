@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
+use App\Models\Painting;
 use Illuminate\Http\Request;
 
 class LikeController extends Controller
@@ -13,27 +13,27 @@ class LikeController extends Controller
             'reaction' => ['required', 'in:like,love,haha,wow,sad,angry'],
         ]);
 
-        $post = Post::findOrFail($id);
+        $painting = Painting::findOrFail($id);
         $user = $request->user();
         $reaction = $validated['reaction'];
 
-        // Vérifie si la personne avait déjà liké ce post
-        $existingLike = $post->likes()->where('user_id', $user->id)->first();
+        // Vérifie si la personne avait déjà liké cette peinture
+        $existingLike = $painting->likes()->where('user_id', $user->id)->first();
 
         if ($existingLike) {
             // Vérifie si la personne a sélectionné la même réaction que celle qu'elle avait déjà sélectionnée
             if ($existingLike->pivot->reaction === $reaction) {
                 // Retire la réaction
-                $post->likes()->detach($user->id);
+                $painting->likes()->detach($user->id);
             } else {
                 // Met à jour la réaction avec la nouvelle réaction
-                $post->likes()->updateExistingPivot($user->id, ['reaction' => $reaction]);
+                $painting->likes()->updateExistingPivot($user->id, ['reaction' => $reaction]);
             }
         } else {
-            // Like le post avec la réaction sélectionnée
-            $post->likes()->attach($user->id, ['reaction' => $reaction]);
+            // Like la peinture avec la réaction sélectionnée
+            $painting->likes()->attach($user->id, ['reaction' => $reaction]);
         }
 
-        return redirect("/posts/$id");
+        return redirect("/paintings/$id");
     }
 }

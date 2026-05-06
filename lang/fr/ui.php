@@ -5,10 +5,10 @@ declare(strict_types=1);
 return [
     'home' => [
         'title' => 'Accueil',
-        'description' => "Page d'accueil du réseau social.",
+        'description' => "Page d'accueil de la galerie d'art.",
         'introduction' => 'Bienvenue sur :app_name !',
-        'recent_posts' => 'Posts récents',
-        'see_all_posts' => 'Voir tous les posts',
+        'recent_paintings' => 'Œuvres récentes',
+        'see_all_paintings' => 'Voir toutes les œuvres',
     ],
     'auth' => [
         'login' => [
@@ -111,6 +111,10 @@ return [
                     'label' => 'Nom',
                     'placeholder' => 'Entrez votre nom',
                 ],
+                'description' => [
+                    'label' => 'Description',
+                    'placeholder' => 'Décrivez votre œuvre...',
+                ],
             ],
             'actions' => [
                 'submit' => 'Sauvegarder',
@@ -123,8 +127,8 @@ return [
     'profile' => [
         'title' => 'Profil de :username',
         'description' => 'Page de profil pour :username.',
-        'posts_heading' => 'Posts de :first_name :last_name',
-        'number_of_posts' => '{0} Aucune publication|{1} :count publication|[2,*] :count publications',
+        'paintings_heading' => 'Œuvres de :first_name :last_name',
+        'number_of_paintings' => '{0} Aucune œuvre|{1} :count œuvre|[2,*] :count œuvres',
         'member_since' => 'Membre depuis le :date.',
     ],
     'about' => [
@@ -165,10 +169,10 @@ return [
                 'scopes' => [
                     'label' => 'Permissions',
                     'options' => [
-                        'posts_create' => 'Créer des posts',
-                        'posts_read' => 'Lire les posts',
-                        'posts_update' => 'Modifier des posts',
-                        'posts_delete' => 'Supprimer des posts',
+                        'paintings_create' => 'Créer des œuvres',
+                        'paintings_read' => 'Lire les œuvres',
+                        'paintings_update' => 'Modifier des œuvres',
+                        'paintings_delete' => 'Supprimer des œuvres',
                     ],
                 ],
                 'content' => [
@@ -186,48 +190,74 @@ return [
             ],
         ],
     ],
-    'posts' => [
-        'no_posts' => 'Aucun post à afficher.',
-        'likes_count' => '{0} Aucun like|{1} :count like|[2,*] :count likes',
-        'view_post' => 'Voir le post',
+    'paintings' => [
+        'no_paintings' => 'Aucune œuvre à afficher.',
+        'likes_count' => '{0} Aucune réaction|{1} :count réaction|[2,*] :count réactions',
+        'view_painting' => 'Voir l\'œuvre',
         'create' => [
-            'title' => 'Créer un nouveau post',
-            'description' => 'Créez un nouveau post pour partager vos pensées avec le monde sur :app_name.',
+            'title' => 'Créer une nouvelle œuvre',
+            'description' => 'Créez une nouvelle œuvre pour partager votre travail sur :app_name.',
         ],
         'form' => [
             'fields' => [
                 'title' => [
-                    'label' => 'Titre (optionnel)',
-                    'placeholder' => 'Entrez un titre pour votre post (optionnel)',
+                    'label' => 'Titre',
+                    'placeholder' => 'Entrez un titre pour votre œuvre',
                 ],
-                'content' => [
-                    'label' => 'Contenu',
-                    'placeholder' => 'Exprimez-vous librement dans votre post...',
+                'description' => [
+                    'label' => 'Description',
+                    'placeholder' => 'Décrivez votre œuvre, ses inspirations, techniques...',
+                ],
+                'image' => [
+                    'label' => 'Image de l\'œuvre',
+                    'help' => 'Formats acceptés: JPG, JPEG, PNG, BMP, GIF, WEBP. Taille maximale: 5 Mo.',
+                    'placeholder' => 'Choisissez une image pour votre œuvre',
+                ],
+                'category' => [
+                    'label' => 'Catégorie',
+                    'placeholder' => 'Choisir une catégorie',
+                ],
+                'options' => [
+                    'acrylique' => 'Acrylique',
+                    'gouache' => 'Gouache',
+                    'aquarelle' => 'Aquarelle',
+                    'huile' => "Peinture à l'huile",
+                ],
+                'dimensions' => [
+                    'label' => 'Dimensions',
+                    'placeholder' => 'ex: 50x70 cm',
+                ],
+                'year' => [
+                    'label' => 'Année de création',
+                    'placeholder' => 'ex: 2023',
                 ],
             ],
+
             'actions' => [
                 'submit' => 'Sauvegarder',
                 'cancel' => 'Annuler',
                 'delete' => 'Supprimer',
-                'delete_confirm' => 'Souhaitez-vous vraiment supprimer ce post ? Cette action est irréversible.',
+                'delete_confirm' => 'Souhaitez-vous vraiment supprimer cette œuvre ? Cette action est irréversible.',
             ],
         ],
         'index' => [
-            'title' => 'Tous les posts',
-            'description' => 'Tous les posts de :app_name.',
+            'title' => 'Toutes les œuvres',
+            'description' => 'Découvrez toutes les œuvres de :app_name.',
         ],
         'edit' => [
-            'title' => 'Modifier le post ":post_title"',
-            'title_without_post_title' => 'Modifier le post',
-            'description' => 'Modifiez le post ":post_title" pour mettre à jour son contenu.',
-            'description_without_post_title' => 'Modifiez le post pour mettre à jour son contenu.',
+            'title' => 'Modifier l\'œuvre ":painting_title"',
+            'title_without_painting_title' => 'Modifier l\'œuvre',
+            'description' => 'Modifiez l\'œuvre ":painting_title" pour mettre à jour ses informations.',
+            'description_without_painting_title' => 'Modifiez l\'œuvre pour mettre à jour ses informations.',
         ],
         'show' => [
-            'title' => '":post_title" par :first_name :last_name',
-            'title_without_post_title' => 'Post par :first_name :last_name',
-            'description' => '":post_title" par :first_name :last_name.',
-            'description_without_post_title' => 'Post de :first_name :last_name.',
-            'author' => 'Publié par :first_name :last_name',
+            'title' => '":painting_title" par :first_name :last_name',
+            'title_without_painting_title' => 'Œuvre par :first_name :last_name',
+            'description' => '":painting_title" par :first_name :last_name.',
+            'description_without_painting_title' => 'Œuvre de :first_name :last_name.',
+            'author' => 'Œuvre de :first_name :last_name',
+            'dimensions' => 'Dimensions: :dimensions',
+            'year' => 'Année: :year',
         ],
     ],
 ];

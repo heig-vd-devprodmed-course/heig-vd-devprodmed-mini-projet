@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
+use App\Models\Painting;
 use App\Models\User;
 use Illuminate\View\View;
 
@@ -15,11 +15,11 @@ class ProfileController extends Controller
     {
         $user = User::where('username', $username)->firstOrFail();
 
-        $posts = Post::where('user_id', $user->id)
+        $paintings = Painting::where('user_id', $user->id)
             ->orderBy('created_at', 'desc')
             ->with(['user', 'likes'])
             ->get();
 
-        return view('profile', ['user' => $user, 'posts' => $posts]);
+        return view('profile', ['user' => $user, 'paintings' => $paintings]);
     }
 }

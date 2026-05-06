@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class Post extends Model
+class Painting extends Model
 {
     /**
-     * Get the user that owns the post.
+     * Get the user that owns the painting.
      */
     public function user(): BelongsTo
     {
@@ -17,7 +17,7 @@ class Post extends Model
     }
 
     /**
-     * Get the users who liked the post.
+     * Get the users who liked the painting.
      */
     public function likes(): BelongsToMany
     {
